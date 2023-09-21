@@ -17,6 +17,11 @@ const Sobre = ({ navigation }) => {
                 Aliquam leo risus, cursus sed mauris ut, commodo rhoncus dolor.
                 In arcu diam, sollicitudin quis dolor venenatis, rhoncus hendrerit ligula.
             </Text>
+
+            <Button
+                title="Home"
+                onPress={() => navigation.navigate("Home")}
+            />
         </View>
     )
 }
