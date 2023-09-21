@@ -1,17 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-// import HelloRN from './components/HelloRN';
-// import Parent from './components/05Parent';
-import Questao01 from './components/tarefa01/Questao01';
-import Questao03 from './components/tarefa01/Questao03';
+import MainScreen from './components/Atividade03/MainScreen';
 
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Questao01 />
-      <Questao03 cor="gray" />
-    </View >
+    <MainScreen />
   );
 }
 
