@@ -1,25 +1,49 @@
 import { View, Text, Button, TextInput } from "react-native"
 import myStyle from "./MyStyle"
+import MyFancyModal from "./MyFancyModal"
+import { useState } from "react"
 
 const Imc = ({ route, navigation }) => {
-    const imc = { peso: "", altura: "" }
+    const [modalVisible, setModalVisible] = useState(false)
+    const [altura, setAltura] = useState(0)
+    const [peso, setPeso] = useState(0)
+    const [imc, setImc] = useState(0)
+
+    const pesoF = parseFloat(peso)
+    const alturaF = parseFloat(altura)
+    const IMC = pesoF / (alturaF * alturaF)
+    const IMCTruncate = IMC.toFixed(2)
+
     return (
         <View style={myStyle.container}>
             <Text style={myStyle.header}>imc</Text>
             <TextInput
                 style={myStyle.input}
                 placeholder="Peso"
-                onChangeText={text => imc.peso = text}
+                onChangeText={peso => setPeso(peso)}
             />
             <TextInput
                 style={myStyle.input}
                 placeholder="Altura"
-                onChangeText={text => imc.altura = text}
+                onChangeText={altura => setAltura(altura)}
             />
+
 
             <Button
                 title="OK"
-                onPress={() => navigation.navigate("Resultado", imc)}
+                onPress={
+                    () => {
+                        setImc(IMCTruncate),
+                            setModalVisible(true)
+                    }
+
+                }
+            />
+
+            <MyFancyModal
+                modalVisible={modalVisible}
+                setModalVisible={setModalVisible}
+                IMCTruncate={IMCTruncate}
             />
 
         </View>

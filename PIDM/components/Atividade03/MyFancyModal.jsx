@@ -1,7 +1,9 @@
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from 'react-native';
+import myStyle from "./MyStyle"
+
 
 //https://reactnative.dev/docs/modal
-const MyFancyModal = ({ modalVisible, setModalVisible }) => {
+const MyFancyModal = ({ modalVisible, setModalVisible, IMCTruncate }) => {
     return (
         <Modal
             animationType="slide"
@@ -11,13 +13,18 @@ const MyFancyModal = ({ modalVisible, setModalVisible }) => {
                 //Alert.alert('Modal has been closed.');
                 setModalVisible(!modalVisible);
             }}>
-            <View style={styles.centeredView}>
+            <View style={myStyle.container}>
                 <View style={styles.modalView}>
-                    <Text style={styles.modalText}>Hello World!</Text>
+
+                    <Text style={styles.modalText}>Resultado</Text>
+                    <Text style={styles.modalText}>Seu IMC é:{IMCTruncate}</Text>
+                    <Text style={styles.modalText}>Você está:</Text>
+                    <Text style={styles.modalText}>{IMCTruncate < 17 ? "Muito abaixo do peso" : IMCTruncate < 18.49 ? "Abaixo do Peso" : IMCTruncate < 24.99 ? "Peso normal"
+                        : IMCTruncate < 29.99 ? "Acima do peso" : IMCTruncate < 34.99 ? "Obesidade I" : IMCTruncate < 39.99 ? "Obesidade II (Severa)" : "Obesidade III (Mórbida)"}</Text>
                     <Pressable
                         style={[styles.button, styles.buttonClose]}
                         onPress={() => setModalVisible(!modalVisible)}>
-                        <Text style={styles.textStyle}>Hide Modal</Text>
+                        <Text style={styles.textStyle}>Fechar</Text>
                     </Pressable>
                 </View>
             </View>
